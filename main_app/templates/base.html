@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <title>CareScribe</title>
+
+    {% block head %} {% endblock %}
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'patient-index' %}">Patients</a></li>
+          <li><a href="{% url 'patient-create' %}">Add a patient</a></li>
+          <li><a href="{% url 'appointment-index' %}">Appointments</a></li>
+          <li><a href="{% url 'add-appointment' %}">Add an appointment</a></li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="logout-btn">Log out</button>
+            </form>
+          </li>
+          {% else %}
+          <li><a href="{% url 'signup' %}">SignUp</a></li>
+          <li><a href="{% url 'home' %}">Home/Login</a></li>
+
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    <main>{% block content %} {% endblock content %}</main>
+  </body>
+</html>

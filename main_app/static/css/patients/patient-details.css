@@ -1,0 +1,36 @@
+.details-page {
+  margin-left: 20px;
+}
+
+.patient-details,
+.apts-container,
+.medication-container {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 500px;
+}
+
+.apt,
+.medication {
+  border: solid var(--patientborder);
+  border-radius: 2px;
+  background-color: var(--patientback);
+  width: 30%;
+  height: 28px;
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.patient-details {
+  border: solid var(--patientborder);
+  background: var(--patientback);
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+hr {
+  border-color: var(--patientborder);
+  width: 95%;
+}

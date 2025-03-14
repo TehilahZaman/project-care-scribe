@@ -1,0 +1,44 @@
+:root {
+  --border: rgb(247, 135, 154);
+  --back: pink;
+  --patientback: #edadb4;
+  --patientborder: #db7f8e;
+}
+
+nav {
+  border: solid var(--border);
+  border-radius: 5px;
+  background-color: var(--back);
+  /* position: absolute; */
+}
+
+ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+  margin-right: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 2ch;
+}
+
+.btn {
+  border: solid var(--border);
+  background-color: var(--back);
+  border-radius: 1px;
+  padding: 2px 3px;
+}
+
+.logout-btn {
+  border: 0;
+  outline: 0;
+  font-size: 1.7ch;
+  background-color: var(--back);
+}

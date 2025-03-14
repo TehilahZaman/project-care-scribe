@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/patients/patient-details.css' %}" />
+{% endblock %} {% block content %}
+<section class="details-page">
+  <h2>Patient information - {{ patient.name }}</h2>
+
+
+  <section class="apt-container">
+    <h3>Appointments:</h3>
+    <div class="apts-container">
+      {% if patient.appointment_set.all.count %} 
+      {% for appointment in patient.appointment_set.all %}
+
+      <div class="apt">
+        <a href="{% url 'appointment-details' appointment.id %}">
+          {{ appointment.date }} with Dr. {{appointment.dr_name}}
+        </a>
+      </div>
+
+      {% endfor %} 
+      {% else %}
+      <h3>No appointments</h3>
+      {% endif %}
+    </div>
+    <a href="{% url 'add-appointment' %}" class="btn">Add Appointments</a>
+  </section>
+
+  <section class="medication-section">
+    <h3>Medications:</h3>
+    <div class="medication-container">
+      {% if patient.medication_set.all.count %} 
+      {% for medication in patient.medication_set.all %}
+      <div class="medication">
+        <a href="{% url 'medication-details' patient.id medication.id %}" 
+          >{{medication.name}}</a
+        >
+      </div>
+      {% endfor %}
+        {% else %}
+      <h3>No medications</h3>
+      {% endif %}
+    </div>
+    <a href="{% url 'add-medication' patient.id %}" class="btn">Add Medication</a>
+  </section>
+
+   <section class="details-container">
+  <h3>Care notes:</h3>
+    <div class="patient-details">
+      <p>Age: {{ patient.age }}</p>
+      <p>Diagnosis: {{ patient.diagnosis }}</p>
+      <hr>
+      <p>{{ patient.notes }}</p>
+    </div>
+
+    <div class="patient-actions">
+      <a href="{% url 'patient-update' patient.id %}" class="btn warn"
+        >Change</a
+      >
+      <a href="{% url 'patient-delete' patient.id %}" class="btn danger"
+        >Remove Patient</a
+      >
+    </div>
+  </section>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/appointments/appointment-details.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    
+
+
+<section class="apt-detail-container">
+    <div class="appointment-details">
+
+    <h1>Appointment for {{ appointment.patient }}</h1>
+        <h3>On {{appointment.date}} at {{appointment.time}} </h3>
+        <p>With {{appointment.dr_name}} ({{appointment.appointment_type}})at {{ appointment.address}}</p>
+        <p>{{appointment.notes}}</p>
+
+        <div class="apt-actions">
+         <a href="{% url 'appointment-update' appointment.id %}" class="btn warn">Edit</a>
+         <a href="{% url 'appointment-delete' appointment.id %}" class="btn danger">Cancel</a>
+        </div>
+            
+
+    </div>
+
+</section>
+
+{% endblock content %}

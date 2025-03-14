@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+
+{% block content %}
+<h1>Cancel Appointment?</h1>
+<h2>Are you sure you want to cancel appointment with {{ object.dr_name }}?</h2>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <a href="{% url 'appointment-details' appointment.id %}">No</a>
+    <button type="submit" class="btn danger">Yes</button>
+</form>
+    
+{% endblock content %}
+    

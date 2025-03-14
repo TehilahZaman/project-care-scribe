@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+    
+{% endblock head %}
+    
+
+{% block content %}
+<section>
+    <h1>Medication Details</h1>
+    <p>{{medication.patient}} {{medication.name}} {{medication.dosage}}... </p>
+</section>
+
+ <div class="med-actions">
+      <a href="{% url 'medication-update' patient.id medication.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'medication-delete' patient.id medication.id %}" class="btn danger">Delete</a>
+      <!-- removed patient ids for both links ...  -->
+    </div> 
+    <!-- / this might need to be medication.patient -->
+
+{% endblock content %}

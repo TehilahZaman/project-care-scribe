@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+{% endblock %}
+
+
+{% block content %}
+    
+    
+
+
+<section class="apt-container">
+    <div class="appointments">
+
+
+<h2>THIS SHOULD BE ALL APPOINTMENTS bananana</h2>
+<!-- this page can be deleted  -->
+
+{% if appointment %}
+<h1>Appointments:</h1>
+{% for  appointments in appointments %}
+        <div>
+            {{appointment.patient}}: {{ appointment.date }} with {{appointments.dr_name}}</a></div>
+            
+{% endfor %}
+
+{% else %}
+    <h1>No appointments</h1>
+{% endif %}
+
+    </div>
+
+</section>
+
+{% endblock content %}

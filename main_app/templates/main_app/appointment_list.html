@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/appointments/appointment-index.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    
+
+
+<section class="apt-container">
+    <div class="appointments">
+
+        <h2>THIS SHOULD BE ALL APPOINTMENTS</h2>
+
+             {% if appointment_list %}
+                <h1>Appointments:</h1>
+
+                {% for appointment in appointment_list %}
+                
+                
+                <div><a href="{% url 'appointment-details' appointment.id %}"> {{appointment.patient}}: {{ appointment.date }} with {{appointment.dr_name}}</a></div>
+                
+                <div class="apt-actions">
+                    <a href="{% url 'appointment-update' appointment.id %}" class="btn warn">Edit</a>
+                    <a href="{% url 'appointment-delete' appointment.id %}" class="btn danger">Cancel</a>
+                </div>
+                {% endfor %}
+    </div>
+
+            {% else %}
+                <h1>No appointments</h1>
+           {% endif %}
+
+
+
+</section>
+
+{% endblock content %}

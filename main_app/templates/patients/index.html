@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/patients/patient-index.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+<h2>Your Patients</h2>
+<section class="patient-container">
+    
+    {% for patient in patients %}
+    <div class="patient-card">
+        <a href="{% url 'patient-details' patient.id%}">{{ patient.name }}</a>
+    </div>
+    {% endfor %}
+
+</section>
+    
+{% endblock content %}
+
