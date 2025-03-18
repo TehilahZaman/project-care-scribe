@@ -1,4 +1,4 @@
-h2{
+h2 {
   text-align: center;
 }
 
@@ -33,9 +33,16 @@ h2{
   background: var(--patientback);
   margin-top: 20px;
   margin-bottom: 30px;
+  padding-left: 10px;
   width: 60%;
 }
 
-.medication-section, .details-container{
+hr {
+  border-color: var(--patientborder);
+  width: 80%;
+}
+
+.medication-section,
+.details-container {
   margin-top: 30px;
 }
