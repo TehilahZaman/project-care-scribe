@@ -11,6 +11,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Patient, Appointment, Medication
 from .forms import AppointmentForm, MedicationForm
 from django import forms
+import calendar
+from datetime import date
 
 
 
@@ -86,6 +88,51 @@ def add_appointment(request):
   
 class AppointmentList(LoginRequiredMixin, ListView):
     model = Appointment
+
+def calendar_view(request, year=None, month=None):
+    appointments_list = Appointment.objects.all()
+    print(appointments_list)
+
+# if the date is not specified set it today
+    if not year or not month:
+        today = date.today()
+        year, month = today.year, today.month
+    # first_weekday, num_days = calendar.monthrange(year, month)
+    # days = [0] * first_weekday + list(range(1, num_days + 1))
+# generate all the day in any month in a list 
+    cal = calendar.Calendar()
+    month_days = list(cal.itermonthdays(year, month))
+#  filter the appointment by year and month 
+    appointments = Appointment.objects.filter(date__year=year, date__month=month)
+
+    days_with_appts = []
+    for day in month_days:
+        if day == 0:
+            days_with_appts.append((0, []))
+        else:
+            appt_list = [appt for appt in appointments if appt.date.day == day]
+            days_with_appts.append((day, appt_list))
+            
+            # print(appt_list)
+                
+
+# #  create an empty dictionary for appts excluding the 0 dates 
+#     appt_dict = {day: [] for day in month_days if day != 0}
+# # loop through appts and append the appt into the  correct day 
+#     for appt in appointments:
+#         appt_dict[appt.date.day].append(appt)
+
+
+#  send all information to html template 
+    context = {
+        "year": year,
+        "month": month,
+        "month_name": calendar.month_name[month],
+        "days": month_days,
+        "appts": days_with_appts,
+        "appointments_list": appointments_list,
+    }
+    return render(request, 'appointments/calendar.html', context)
 
 
 class AppointmentDetail(LoginRequiredMixin, DetailView):

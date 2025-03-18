@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+    <link
+     rel="stylesheet"
+     href="{% static 'css/appointments/appointment-index.css' %}"/>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 10px; text-align: center; }
+        .has-appointment { background-color: white; }
+    </style>
+{% endblock head %}
+    
+{% block content %}
+
+<main class="container">
+    <section class="apt-container">
+        <div class="appointments">
+            {% if appointments_list %}
+            <h1>Appointments:</h1>
+
+            {% for appt in appts %}
+                 {% for appointment in appt.1 %}
+
+                <div class="appointment">
+                    <a href="{% url 'appointment-details' appointment.id %}">
+                     {{appointment.patient}}: {{ appointment.date }} with
+                    {{appointment.dr_name}}</a>
+                </div>
+
+    <!-- <div class="apt-actions">
+                    <a href="{% url 'appointment-update' appointment.id %}" class="btn warn">Edit</a>
+                    <a href="{% url 'appointment-delete' appointment.id %}" class="btn danger">Cancel</a>
+                </div> -->
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+            {% else %}
+                <h1>No appointments</h1>
+            {% endif %}
+    </section>
+
+    <section class="calendar-container">
+        <h2>{{month_name}} {{year}}</h2>
+        <table>
+            <tr class="week-days">
+                <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+            </tr>
+            <tr>
+                {% for day in days %}
+                    {% if forloop.counter|divisibleby:7 %}
+                        </tr><tr>    
+                    {% endif %}
+                    {% if forloop.first and day != 1 %}
+                        <td colspan="{{ day|add:'-1' }}"></td>
+                    {% endif %}
+
+                    {% if day != 0 %}
+                        <td class="
+                            {% if appts %}has-appointment{% endif %}">
+                            <div class="day">{{ day }}</div>
+                            
+                            {% for appt in appts %}   
+                                {% if appt.0 == day %}
+                                    {% for appointment in appt.1 %}
+                                        <div class="apt">
+                                            <a href="{% url 'appointment-details' appointment.id %}">
+                                                {{appointment.patient}}
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}       
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+
+
+    
+                {% endfor %}
+                </tr>
+            </table>
+    </section>
+</main>
+{% endblock content %}
+    

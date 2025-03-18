@@ -1,0 +1,40 @@
+h1 {
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+.form {
+  border: solid var(--border);
+  padding-bottom: 12%;
+  padding-top: 3%;
+  margin: auto 27%;
+}
+
+tr {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 50px;
+}
+
+th {
+  position: absolute;
+  left: 35%;
+}
+
+td {
+  position: absolute;
+  right: 35%;
+}
+
+ul.errorlist {
+  display: none;
+}
+
+.submit {
+  position: absolute;
+  bottom: 13%;
+}

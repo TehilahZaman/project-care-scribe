@@ -11,7 +11,17 @@ urlpatterns = [
     path('patient/<int:pk>/update', views.PatientUpdate.as_view(), name="patient-update"),
     path('patient/<int:pk>/delete', views.PatientDelete.as_view(), name='patient-delete'),
     path('appointments/add-appointment', views.add_appointment, name='add-appointment'),
+
+
+
     path('appointments/', views.AppointmentList.as_view(), name='appointment-index'),
+    path('calendar/', views.calendar_view, name='calendar-view'),
+
+
+
+
+
+
     # add/create - through patient maybe i can pre fill the patient input? 
     # path('patient/<int:patient_id>/add-appointment', views.add_appointment, name='add-appointment'),
     path('appointments/<int:pk>/', views.AppointmentDetail.as_view(), name='appointment-details'),

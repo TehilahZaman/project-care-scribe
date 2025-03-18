@@ -1,0 +1,59 @@
+.container {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-rows: auto;
+}
+
+h1 {
+  /* text-align: center; */
+  margin-left: 15px;
+}
+
+.appointments {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 70%;
+  margin-left: 10px;
+}
+
+.appointment {
+  background-color: white;
+  border: solid var(--patientborder);
+  border-radius: 3px;
+  height: 40px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  padding-left: 5%;
+  padding-top: 4%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.calendar-container {
+  margin-right: 10px;
+  width: 100%;
+}
+
+.week-days {
+  background-color: var(--back);
+}
+
+.apt {
+  background-color: var(--patientback);
+  border-radius: 4px;
+}
+
+td {
+  height: 55px;
+  width: 47px;
+  position: relative;
+  padding: 10px;
+}
+
+.day {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-weight: bold;
+}

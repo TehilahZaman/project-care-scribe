@@ -11,9 +11,11 @@
 <section class="patient-container">
     
     {% for patient in patients %}
+    <a href="{% url 'patient-details' patient.id%}">
     <div class="patient-card">
-        <a href="{% url 'patient-details' patient.id%}">{{ patient.name }}</a>
+        {{ patient.name }}
     </div>
+    </a>
     {% endfor %}
 
 </section>
