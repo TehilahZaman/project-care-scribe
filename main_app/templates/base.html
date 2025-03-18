@@ -12,6 +12,8 @@
   <body>
     <header>
       <nav>
+        <h1>Care Scribe</h1>
+
         <ul>
           {% if user.is_authenticated %}
           <li><a href="{% url 'patient-index' %}">Patients</a></li>

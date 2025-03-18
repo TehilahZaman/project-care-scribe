@@ -1,5 +1,5 @@
 <div id="banner" align="center" >
-<img src="" width="400" height="400">
+<img src="static/images/title.png" width="400" height="400">
 </div>
 
 <div id="description" align="center">
@@ -20,13 +20,13 @@ Care Scribe is a website that allows care takers and medical professionals to tr
 
 ## Screenshots
 
-|      Description      | Screenshot                                          |
-| :-------------------: | --------------------------------------------------- |
-|     **Patients**      | <img src="images/patients.png" width="700"/>        |
-|  **Patient Details**  | <img src="images/patient-details.png" width="700"/> |
-|     **Calendar**      | <img src="images/calendar.png" width="700"/>        |
-|   **Add a Patient**   | <img src="images/add-pat.png" width="700"/>         |
-| **Adding Medication** | <img src="images/add-meds.png" width="700"/>        |
+|      Description      | Screenshot                                                 |
+| :-------------------: | ---------------------------------------------------------- |
+|     **Patients**      | <img src="static/images/patients.png" width="700"/>        |
+|  **Patient Details**  | <img src="static/images/patient-details.png" width="700"/> |
+|     **Calendar**      | <img src="static/images/calendar.png" width="700"/>        |
+|   **Add a Patient**   | <img src="static/images/add-pat.png" width="700"/>         |
+| **Adding Medication** | <img src="static/images/add-meds.png" width="700"/>        |
 
 ## Technologies Used
 
