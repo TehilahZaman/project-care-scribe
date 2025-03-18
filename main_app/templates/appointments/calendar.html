@@ -34,11 +34,7 @@
                      {{appointment.patient}}: {{ appointment.date }} with
                     {{appointment.dr_name}}</a>
                 </div>
-
-    <!-- <div class="apt-actions">
-                    <a href="{% url 'appointment-update' appointment.id %}" class="btn warn">Edit</a>
-                    <a href="{% url 'appointment-delete' appointment.id %}" class="btn danger">Cancel</a>
-                </div> -->
+                
                 {% endfor %}
             {% endfor %}
         </div>

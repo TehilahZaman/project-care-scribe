@@ -74,7 +74,7 @@ def add_appointment(request):
         new_appointment = form.save(commit=False)
         new_appointment.user_id = request.user.id
         new_appointment.save()
-        return redirect('calendar_view')
+        return redirect('calendar-view')
     return render(request, 'main_app/appointment_form.html', {'form': form})
 
   
