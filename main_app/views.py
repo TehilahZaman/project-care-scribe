@@ -64,8 +64,8 @@ class PatientCreate(LoginRequiredMixin, CreateView):
 
 class PatientUpdate(LoginRequiredMixin, UpdateView):
     model = Patient
-    fields = '__all__' 
-
+    fields = ['name', 'age', 'diagnosis', 'notes']
+    
 
 class PatientDelete(LoginRequiredMixin, DeleteView):
     model = Patient
