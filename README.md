@@ -45,7 +45,7 @@ Care Scribe is a website that allows care takers and medical professionals to tr
 
  <details >
   <summary> Navigating Care Scribe</summary>
-    Navigating is easy on Care Scribe, the nav bar allows you to move to any page to add information or view your patients and appointments. The details of any information added - patient details, mediation or appointments details - can be accessed bye clicking it. 
+    Navigating is easy on Care Scribe, the nav bar allows you to move to any page to add information or view your patients and appointments. The details of any information added - patient details, medication or appointment details - can be accessed bye clicking it. 
 </details>
 
   <details >
@@ -68,4 +68,4 @@ Care Scribe is a website that allows care takers and medical professionals to tr
 
 ## Upcoming Features
 
-- [ ] Enabling users to add or remove features like medication and calendars from their main pages
+- [ ] Enable users to add or remove features like medication and calendars from their main pages
