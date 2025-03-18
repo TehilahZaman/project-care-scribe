@@ -25,6 +25,7 @@ class Appointment(models.Model):
     address = models.CharField(max_length=100)
     notes = models.TextField()
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('appointment-details', kwargs={"pk": self.id})
@@ -55,4 +56,3 @@ class Medication(models.Model):
     def get_absolute_url(self):
         return reverse('medication-details', kwargs={'patient_id': self.patient, 'medication_id': self.id})
     
-    #  i cahnge pk to medication_id ... 

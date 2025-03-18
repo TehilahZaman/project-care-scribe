@@ -15,9 +15,6 @@ import calendar
 from datetime import date
 
 
-
-
-
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -40,7 +37,7 @@ class home(LoginView):
 
 @login_required
 def patient_index(request):
-    # patients = Patient.objects.all()
+
     patients = Patient.objects.filter(user=request.user)
     return render(request, 'patients/index.html', {'patients': patients})
 
@@ -58,7 +55,6 @@ class PatientCreate(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        #  this can probably be done to other things lkke meds and apt
         return super().form_valid(form)
 
 
@@ -72,38 +68,32 @@ class PatientDelete(LoginRequiredMixin, DeleteView):
     success_url = '/patients/'
 
 @login_required
-# change this to createview and pass in form how?  or jus change name 
 def add_appointment(request):
-    # form = AppointmentForm()
     form = AppointmentForm(request.POST)
     if form.is_valid():
         new_appointment = form.save(commit=False)
-        # assign the cat_id to the form for the cat_id column in psql
-        # new_appointment.patient_id = patient_id --- appointment.pateint_id?
+        new_appointment.user_id = request.user.id
         new_appointment.save()
-        return redirect('appointment-index')
+        return redirect('calendar_view')
     return render(request, 'main_app/appointment_form.html', {'form': form})
 
-   
   
 class AppointmentList(LoginRequiredMixin, ListView):
     model = Appointment
 
-def calendar_view(request, year=None, month=None):
-    appointments_list = Appointment.objects.all()
-    print(appointments_list)
 
-# if the date is not specified set it today
+def calendar_view(request, year=None, month=None):
+    appointments_list = Appointment.objects.filter(user=request.user)
+    
     if not year or not month:
         today = date.today()
         year, month = today.year, today.month
-    # first_weekday, num_days = calendar.monthrange(year, month)
-    # days = [0] * first_weekday + list(range(1, num_days + 1))
+
 # generate all the day in any month in a list 
     cal = calendar.Calendar()
     month_days = list(cal.itermonthdays(year, month))
-#  filter the appointment by year and month 
-    appointments = Appointment.objects.filter(date__year=year, date__month=month)
+# filter the appointment by year and month 
+    appointments = appointments_list.filter( date__year=year, date__month=month)
 
     days_with_appts = []
     for day in month_days:
@@ -112,15 +102,6 @@ def calendar_view(request, year=None, month=None):
         else:
             appt_list = [appt for appt in appointments if appt.date.day == day]
             days_with_appts.append((day, appt_list))
-            
-            # print(appt_list)
-                
-
-# #  create an empty dictionary for appts excluding the 0 dates 
-#     appt_dict = {day: [] for day in month_days if day != 0}
-# # loop through appts and append the appt into the  correct day 
-#     for appt in appointments:
-#         appt_dict[appt.date.day].append(appt)
 
 
 #  send all information to html template 
@@ -140,7 +121,6 @@ class AppointmentDetail(LoginRequiredMixin, DetailView):
 
 
 class AppointmentUpdate(LoginRequiredMixin, UpdateView):
-    # template_name="main_app/appointment_form.html"
     model = Appointment 
     fields = ['date', 'time', 'address', 'notes']
 
@@ -153,45 +133,24 @@ class AppointmentDelete(LoginRequiredMixin, DeleteView):
     success_url = '/appointments/'
 
 
-# def add_medication(request, patient_id):
-#     form = MedicationForm(request.POST)
-#     if form.is_valid():
-#         new_medication = form.save(commit=False)
-#         new_medication.patient_id = patient_id
-#         new_medication.save()
-#     # print(form)
-#     # return redirect('add-medication', patient_id = patient_id)
-#     return render(request, 'main_app/medication_form.html', {'form': form, 'patient_id': patient_id})
-
 class MedicationCreate(LoginRequiredMixin, CreateView):
     model = Medication
     fields = ['name', 'dosage', 'pill_amount', 'times_per_day', 'time_of_day', 'perscribed_by', 'patient', 'notes',]
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     patient_id = self.kwargs['patient_id']
-    #     context['patient_id'] = patient_id
-    #     return context
-    # pk_url_kwarg = 'medication_id'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         patient_id = self.kwargs['patient_id']
-        # medication_id = self.kwargs['medication_id']
+        
         context['patient_id'] = patient_id
-        # context['medication_id'] = medication_id
         return context
         
     def form_valid(self, form):
-        # form.instance.patient = self.request.patient
         return super().form_valid(form)
     
     def get_success_url(self):
         return reverse('patient-details', kwargs={'patient_id': self.kwargs['patient_id']})
-    # def get_success_url(self):
-    #     return reverse('medication-details', kwargs={'patient_id': self.kwargs['patient_id'], , 'medication_id': self.kwargs['medication_id']})
-    #  does this work as medication-details ?????? 
-    # ther is no medication id in the url for the method to grab! 
+
 
 
 @login_required
@@ -205,7 +164,6 @@ class MedicationUpdate(LoginRequiredMixin, UpdateView):
     model = Medication 
     fields = ['dosage', 'pill_amount', 'time_of_day', 'notes']
 
-# normally, update uses pk so this tells the cbv that the pk is medication_id
     pk_url_kwarg = 'medication_id'
 
     def get_context_data(self, **kwargs):
