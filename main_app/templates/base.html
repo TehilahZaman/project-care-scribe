@@ -12,7 +12,12 @@
   <body>
     <header>
       <nav>
-        <h1>Care Scribe</h1>
+        <div class="img-header">
+        <img src="{% static 'images/header.png' %}" alt="care bear" width="75" height="70">
+        <h1>
+          Care Scribe
+        </h1>
+        </div>
 
         <ul>
           {% if user.is_authenticated %}
