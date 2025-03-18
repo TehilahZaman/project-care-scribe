@@ -3,6 +3,7 @@
 
 
 {% block head %}
+<link rel="stylesheet" href="{% static 'css/forms/add-form.css' %}" />
     
 {% endblock head %}
     
@@ -17,14 +18,15 @@
 
 {% endif %}
     
-
+<div class="form">
 <form action="" method="post" class="'form-container" autocomplete="off">
     {% csrf_token %}
     <table>
         {{ form.as_table}}
     </table>
-    <button type="submit" class="btn submit"> Submit!</button>
+    <button type="submit" class="btn medication-submit"> Submit!</button>
 </form>
+</div>
     
 {% endblock content %}
     

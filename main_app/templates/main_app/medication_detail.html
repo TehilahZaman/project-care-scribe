@@ -3,21 +3,31 @@
 
 
 {% block head %}
-    
+    <link rel="stylesheet" href="{% static 'css/medications/medication-details.css' %}">
 {% endblock head %}
     
 
 {% block content %}
-<section>
-    <h1>Medication Details</h1>
-    <p>{{medication.patient}} {{medication.name}} {{medication.dosage}}... </p>
+<h1>Medication Details</h1>
+<section class="detail-container">
+<section class="medication-details">
+    <h2>Medication for: {{medication.patient}}</h2>
+    <p>Medication Name: {{medication.name}}</p>
+    <p>Perscribing Doctor: {{medication.perscribed_by}}</p>
+    <hr>
+    <h4>Dosage Information: </h4>
+    <p>{{medication.dosage}} mg </p>
+    <p>{{medication.pill_amount}} pills {{medication.times_per_day}} per day</p>
+    <!-- <p>Taken: {{medication.time_of_day}}</p> -->
+    <p>Need Refill:  {{medication.need_to_refill}}</p>
+    <hr>
+    <h4>Medication Notes:</h4>
+    <p>{{medication.notes}}</p>
 </section>
 
  <div class="med-actions">
       <a href="{% url 'medication-update' patient.id medication.id %}" class="btn warn">Edit</a>
       <a href="{% url 'medication-delete' patient.id medication.id %}" class="btn danger">Delete</a>
-      <!-- removed patient ids for both links ...  -->
-    </div> 
-    <!-- / this might need to be medication.patient -->
-
+ </div> 
+</section>
 {% endblock content %}

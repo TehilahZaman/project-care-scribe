@@ -165,7 +165,7 @@ class AppointmentDelete(LoginRequiredMixin, DeleteView):
 
 class MedicationCreate(LoginRequiredMixin, CreateView):
     model = Medication
-    fields = ['name', 'dosage', 'pill_amount', 'times_per_day', 'time_of_day', 'perscribed_by', 'notes', 'patient']
+    fields = ['name', 'dosage', 'pill_amount', 'times_per_day', 'time_of_day', 'perscribed_by', 'patient', 'notes',]
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)

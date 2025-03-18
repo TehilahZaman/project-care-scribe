@@ -34,7 +34,17 @@ ul.errorlist {
   display: none;
 }
 
-.submit {
+.patient-submit {
   position: absolute;
-  bottom: 13%;
+  bottom: 31%;
+}
+
+.medication-submit {
+  position: absolute;
+  bottom: 5%;
+}
+
+.appointment-submit {
+  position: absolute;
+  bottom: 12%;
 }

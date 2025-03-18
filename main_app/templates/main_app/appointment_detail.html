@@ -18,8 +18,11 @@
     <div class="appointment-details">
 
     <h1>Appointment for {{ appointment.patient }}</h1>
-        <h3>On {{appointment.date}} at {{appointment.time}} </h3>
-        <p>With {{appointment.dr_name}} ({{appointment.appointment_type}})at {{ appointment.address}}</p>
+        <h3>Date: {{appointment.date}} </h3>
+        <h4>Time: at {{appointment.time}} </h4>
+        <p>With Dr. {{appointment.dr_name}} ({{appointment.appointment_type}})</p>
+        <p>Location: {{ appointment.address}}</p>
+        <h4>Appointment Notes: </h4>
         <p>{{appointment.notes}}</p>
 
         <div class="apt-actions">
